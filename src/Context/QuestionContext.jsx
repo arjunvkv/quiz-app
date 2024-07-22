@@ -6,6 +6,22 @@ export const QuestionContextProvider = ({ children }) => {
   const [questionNumber, setQuestionNumber] = useState(0);
   const [answers, setAnswers] = useState([]);
 
+  const calculateScore = () => {
+    let score = 0;
+
+    for (const ans of answers) {
+      const correctAnswer = questions.find(
+        (q) => q.question === ans.question
+      )?.answer;
+
+      if (ans.answer === correctAnswer) {
+        score += 1;
+      }
+    }
+
+    return score;
+  };
+
   const questions = [
     {
       question: "JSON stands for",
@@ -31,6 +47,7 @@ export const QuestionContextProvider = ({ children }) => {
         setQuestionNumber,
         setAnswers,
         answers,
+        calculateScore,
       }}
     >
       {children}

@@ -15,6 +15,10 @@ const Summary = () => {
     navigate("/");
   };
 
+  const handleGoToScore = () => {
+    navigate("/score");
+  };
+
   return (
     <div>
       <h2>Summary</h2>
@@ -43,6 +47,8 @@ const Summary = () => {
           </div>
         );
       })}
+
+      <button onClick={handleGoToScore}>Go to Score</button>
     </div>
   );
 };
