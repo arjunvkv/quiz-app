@@ -22,7 +22,9 @@ const Navigation = () => {
   return (
     <div>
       <button onClick={() => handleNav("prev")}>Prev</button>
-      <button onClick={() => handleNav("next")}>Next</button>
+      <button onClick={() => handleNav("next")}>
+        {questionNumber >= questions.length - 1 ? "Finish" : "Next"}
+      </button>
     </div>
   );
 };
