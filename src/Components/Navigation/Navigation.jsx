@@ -1,7 +1,9 @@
 import React from "react";
 import { useQuestionContext } from "../../Context/QuestionContext";
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
+  const navigate = useNavigate();
   const { questions, questionNumber, setQuestionNumber } = useQuestionContext();
 
   const handleNav = (dir) => {
@@ -10,6 +12,7 @@ const Navigation = () => {
       setQuestionNumber((prev) => prev - 1);
     } else {
       if (questionNumber >= questions.length - 1) {
+        navigate("/summary");
         return;
       }
       setQuestionNumber((prev) => prev + 1);
