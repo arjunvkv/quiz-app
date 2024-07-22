@@ -1,11 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useQuestionContext } from "../../Context/QuestionContext";
 
 const Summary = () => {
-  const { questions, answers } = useQuestionContext();
+  const { questions, answers, setQuestionNumber } = useQuestionContext();
+  const navigate = useNavigate();
 
   const checkAnswer = (question, userAnswer) => {
     return question.answer === userAnswer;
+  };
+
+  const handleQuestionClick = (index) => {
+    setQuestionNumber(index);
+    navigate("/");
   };
 
   return (
@@ -17,7 +24,7 @@ const Summary = () => {
         )?.answer;
         const isCorrect = checkAnswer(question, userAnswer);
         return (
-          <div key={index}>
+          <div key={index} style={{ marginBottom: "20px" }}>
             <h3>
               {index + 1}. {question.question}
             </h3>
@@ -30,6 +37,9 @@ const Summary = () => {
             <p style={{ color: isCorrect ? "green" : "red" }}>
               {isCorrect ? "Correct" : "Incorrect"}
             </p>
+            <button onClick={() => handleQuestionClick(index)}>
+              Go to Question
+            </button>
           </div>
         );
       })}
